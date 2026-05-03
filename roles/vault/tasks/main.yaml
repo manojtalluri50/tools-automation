@@ -8,3 +8,26 @@
     name: vault
     state: installed
 
+- name: Copy vault config file
+  ansible.builtin.copy:
+    src: vault.hcl
+    dest: /etc/vault.d/vault.hcl
+
+- name: Start vault service
+  ansible.builtin.systemd_service:
+    name: vault
+    state: restarted
+
+- name: open port 8200 in firewall
+  firewalld:
+    port:      "8200/tcp"
+    permanent: true
+    state:     enabled
+    immediate: true
+
+- name: daemon reload
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+
+
