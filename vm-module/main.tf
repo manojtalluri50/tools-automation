@@ -1,16 +1,16 @@
 resource "azurerm_public_ip" "main" {
-  name                = "${var.component}-${var.env}-ip"
+  name                = "${var.component}-ip"
   resource_group_name = data.azurerm_resource_group.main.name
   location            = data.azurerm_resource_group.main.location
   allocation_method   = "Static"
 
   tags = {
-    environment ="${var.component}-${var.env}-ip"
+    environment ="${var.component}-ip"
   }
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "${var.component}-${var.env}-nic"
+  name                = "${var.component}-nic"
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
 
@@ -24,7 +24,7 @@ resource "azurerm_network_interface" "main" {
 }
 
 resource "azurerm_network_security_group" "main" {
-  name                = "${var.component}-${var.env}-nsg"
+  name                = "${var.component}-nsg"
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
 
@@ -41,7 +41,7 @@ resource "azurerm_network_security_group" "main" {
   }
 
   tags = {
-    environment = "${var.component}-${var.env}-nsg"
+    environment = "${var.component}-nsg"
   }
 }
 
@@ -51,7 +51,7 @@ resource "azurerm_network_interface_security_group_association" "main" {
 }
 
 resource "azurerm_dns_a_record" "main" {
-  name                = "${var.component}-${var.env}"
+  name                = var.component
   zone_name           = "azdevopsb82.online"
   resource_group_name = data.azurerm_resource_group.main.name
   ttl                 = 10
@@ -60,7 +60,7 @@ resource "azurerm_dns_a_record" "main" {
 
 resource "azurerm_virtual_machine" "main" {
   depends_on            = [azurerm_network_interface_security_group_association.main,azurerm_dns_a_record.main]
-  name                  = "${var.component}-${var.env}"
+  name                  = var.component
   location              = data.azurerm_resource_group.main.location
   resource_group_name   = data.azurerm_resource_group.main.name
   network_interface_ids = [azurerm_network_interface.main.id]
@@ -78,13 +78,13 @@ resource "azurerm_virtual_machine" "main" {
   }
 
   storage_os_disk {
-    name              = "${var.component}-${var.env}"
+    name              = var.component
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
-    computer_name  = "${var.component}-${var.env}"
+    computer_name  = var.component
     admin_username = "manoj"
     admin_password = "Manu@19jn5a0508"
   }
@@ -92,6 +92,6 @@ resource "azurerm_virtual_machine" "main" {
     disable_password_authentication = false
   }
   tags = {
-    environment = "${var.component}-${var.env}"
+    environment = var.component
   }
 }
