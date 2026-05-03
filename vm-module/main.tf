@@ -30,7 +30,7 @@ resource "azurerm_network_security_group" "main" {
   resource_group_name = data.azurerm_resource_group.main.name
 
   security_rule {
-    name                       = "main"
+    name                       = "ssh"
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
@@ -42,7 +42,7 @@ resource "azurerm_network_security_group" "main" {
   }
 
   security_rule {
-    name                       = "main"
+    name                       = "vault"
     priority                   = 101
     direction                  = "Inbound"
     access                     = "Allow"
