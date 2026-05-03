@@ -16,7 +16,7 @@ resource "azurerm_network_interface" "main" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = data.azurerm_subnet.example.id
+    subnet_id                     = data.azurerm_subnet.main.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.main.id
 
@@ -34,8 +34,20 @@ resource "azurerm_network_security_group" "main" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
+    source_port_range          = "22"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "main"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = var.port
+    destination_port_range     = var.port
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
@@ -85,8 +97,8 @@ resource "azurerm_virtual_machine" "main" {
   }
   os_profile {
     computer_name  = var.component
-    admin_username = "manoj"
-    admin_password = "Manu@19jn5a0508"
+    admin_username = var.ssh_username
+    admin_password = var.ssh_password
   }
   os_profile_linux_config {
     disable_password_authentication = false
