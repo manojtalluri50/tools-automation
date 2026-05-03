@@ -9,7 +9,7 @@
     state: installed
 
 - name: Copy vault config file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: vault.hcl
     dest: /etc/vault.d/vault.hcl
 
