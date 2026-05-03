@@ -4,7 +4,7 @@ module "vm" {
   component  = each.key
   ssh_username=var.ssh_username
   ssh_password=var.ssh_password
-  port= each.value[port]
+  port= each.value["port"]
 }
 
 variable "tools" {
