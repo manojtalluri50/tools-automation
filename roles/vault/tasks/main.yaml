@@ -17,6 +17,7 @@
   ansible.builtin.systemd_service:
     name: vault
     state: restarted
+    enabled: yes
 
 - name: open port 8200 in firewall
   firewalld:
