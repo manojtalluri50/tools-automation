@@ -3,8 +3,6 @@ provider "vault" {
   token = var.token
 }
 
-variable "token" {}
-
 terraform {
   backend "azurerm" {
     resource_group_name  = "project-setup-1"
