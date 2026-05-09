@@ -7,7 +7,7 @@ resource "vault_mount" "main" {
 }
 
 resource "vault_kv_secret" "secret" {
-  path = "infra/ssh"
+  path = "infra/data/ssh"
   data_json = jsonencode(var.secrets["infra"].ssh)
 }
 
