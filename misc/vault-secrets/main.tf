@@ -13,6 +13,9 @@ variable "secrets" {
         admin_password="Devops@123456"
       }
     }
-    roboshop-dev={}
+    roboshop-dev={
+      frontend={}
+      catalogue={}
+    }
   }
 }
