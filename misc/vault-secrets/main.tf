@@ -1,15 +1,7 @@
-resource "vault_mount" "main" {
-  for_each    = var.secrets
-  path        = each.key
-  type        = "kv"
-  options     = { version = "1" }
-  description = each.key
-}
-
-resource "vault_kv_secret" "secret" {
+module "create-secrets" {
   for_each = var.secrets
-  path = "infra/ssh"
-  data_json = jsonencode(var.secrets["infra"].ssh)
+  source   = "./create-secrets"
+  kv_path  = each.key
 }
 
 variable "secrets" {
