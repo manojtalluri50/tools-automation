@@ -43,9 +43,9 @@ variable "secrets" {
       }
 
       payment = {
-        CART_HOST = "cart-dev.azdevopsb82.online:8080"
+        CART_HOST = "cart-dev.azdevopsb82.online"
         CART_PORT = "8080"
-        USER_HOST = "user-dev.azdevopsb82.online:8080"
+        USER_HOST = "user-dev.azdevopsb82.online"
         USER_PORT = "8080"
         AMQP_HOST = "rabbitmq-dev.azdevopsb82.online"
         AMQP_USER = "roboshop"
