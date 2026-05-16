@@ -6,7 +6,7 @@ provider "vault" {
 terraform {
   backend "azurerm" {
     resource_group_name  = "project-setup-1"
-    storage_account_name = "d82tfstates"
+    storage_account_name = "d82tfstates1"
     container_name       = "vault-tf-states"
     key                  = "terraform.tfstate"
   }
