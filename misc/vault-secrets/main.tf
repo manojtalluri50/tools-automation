@@ -40,6 +40,7 @@ variable "secrets" {
       shipping = {
         CART_ENDPOINT = "cart-dev.azdevopsb82.online:8080"
         DB_HOST       = "mysql-dev.azdevopsb82.online"
+        MYSQL_ROOT_PASSWORD = "RoboShop@1"
       }
 
       payment = {
