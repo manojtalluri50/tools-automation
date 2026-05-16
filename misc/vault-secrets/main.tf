@@ -52,9 +52,11 @@ variable "secrets" {
         AMQP_USER = "roboshop"
         AMQP_PASS = "roboshop123"
         }
+
       mysql = {
         MYSQL_ROOT_PASSWORD = "RoboShop@1"
       }
+
       rabbitmq = {
         AMQP_USER = "roboshop"
         AMQP_PASS = "roboshop123"
