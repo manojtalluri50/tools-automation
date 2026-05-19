@@ -20,6 +20,17 @@ variable "secrets" {
         user_endpoint      = "http://user-dev.azdevopsb82.online:8080"
         payment_endpoint   = "http://payment-dev.azdevopsb82.online:8080"
         shipping_endpoint  = "http://shipping-dev.azdevopsb82.online:8080"
+        CATALOGUE_HOST     = "catalogue-dev.azdevopsb82.online"
+        CATALOGUE_PORT     = "8080"
+        USER_HOST          = "user-dev.azdevopsb82.online"
+        USER_PORT          = "8080"
+        CART_HOST          = "cart-dev.azdevopsb82.online"
+        CART_PORT          = "8080"
+        SHIPPING_HOST      = "shipping-dev.azdevopsb82.online"
+        SHIPPING_PORT      = "8080"
+        PAYMENT_HOST       = "payment-dev.azdevopsb82.online"
+        PAYMENT_PORT       = "8080"
+
 
       }
       catalogue = {
